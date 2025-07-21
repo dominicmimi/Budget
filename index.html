@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>Budget Tracker</h1>
+  </header>
+
+  <main>
+    <section id="budget-section" data-aos="fade-up">
+      <input type="number" id="daily-budget" placeholder="Set Daily Budget" />
+      <p>Remaining Today: <span id="remaining">₱0</span></p>
+    </section>
+
+    <section id="add-transaction" data-aos="fade-up">
+      <input type="text" id="desc" placeholder="Description" />
+      <input type="number" id="amount" placeholder="Amount" />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button id="add-btn">Add Transaction</button>
+    </section>
+
+    <section id="transactions" data-aos="fade-up">
+      <h2>Transactions</h2>
+      <ul id="transaction-list"></ul>
+    </section>
+
+    <section id="charts" data-aos="fade-up">
+      <h2>Spending Breakdown</h2>
+      <canvas id="pie-chart"></canvas>
+      <canvas id="bar-chart"></canvas>
+    </section>
+
+    <section id="summary" data-aos="fade-up">
+      <h2>Summary</h2>
+      <canvas id="summary-chart"></canvas>
+    </section>
+  </main>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+  <script>
+    AOS.init();
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
